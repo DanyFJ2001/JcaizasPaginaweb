@@ -53,7 +53,7 @@ featuredCars = [
       model: 'DMAX CRDI PREMIER',
       year: 2021,
       kilometers: 95000,
-      location: 'Quito',
+      location: 'Quito0',
       price: 25000,
       negotiable: true,
       image: '',
