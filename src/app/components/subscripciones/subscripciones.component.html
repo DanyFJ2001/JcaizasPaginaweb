@@ -1,0 +1,151 @@
+
+<section class="subscription-plans-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Planes de <span class="text-highlight">Publicación</span></h2>
+      <p class="section-subtitle">Elige el plan perfecto para subastar tu vehículo</p>
+    </div>
+
+    <div class="plans-container">
+      <!-- Plan Básico -->
+      <div class="plan-card" [ngClass]="{'popular': false}" #basicPlanCard>
+        <div class="plan-badge" *ngIf="false">Más Popular</div>
+        <div class="plan-header">
+          <h3 class="plan-name">Básico</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">5</span>
+            <span class="period">/publicación</span>
+          </div>
+          <p class="plan-description">Ideal para particulares que desean vender un vehículo</p>
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>1 publicación de vehículo</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Duración de 15 días</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Hasta 5 fotos</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Visibilidad estándar</span>
+            </li>
+            <li class="disabled">
+              <i class="fas fa-times"></i>
+              <span>Destacado en búsquedas</span>
+            </li>
+            <li class="disabled">
+              <i class="fas fa-times"></i>
+              <span>Estadísticas de visitas</span>
+            </li>
+          </ul>
+        </div>
+        <div class="plan-action">
+          <button class="action-button">Seleccionar</button>
+        </div>
+      </div>
+
+      <!-- Plan Estándar -->
+      <div class="plan-card popular" #standardPlanCard>
+        <div class="plan-badge">Más Popular</div>
+        <div class="plan-header">
+          <h3 class="plan-name">Estándar</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">15</span>
+            <span class="period">/mes</span>
+          </div>
+          <p class="plan-description">Perfecto para vendedores frecuentes</p>
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>3 publicaciones simultáneas</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Duración de 30 días</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Hasta 10 fotos por vehículo</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Visibilidad mejorada</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Destacado en búsquedas</span>
+            </li>
+            <li class="disabled">
+              <i class="fas fa-times"></i>
+              <span>Estadísticas de visitas</span>
+            </li>
+          </ul>
+        </div>
+        <div class="plan-action">
+          <button class="action-button">Seleccionar</button>
+        </div>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan-card" [ngClass]="{'popular': false}" #premiumPlanCard>
+        <div class="plan-badge" *ngIf="false">Más Popular</div>
+        <div class="plan-header">
+          <h3 class="plan-name">Premium</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">30</span>
+            <span class="period">/mes</span>
+          </div>
+          <p class="plan-description">Para concesionarios y vendedores profesionales</p>
+        </div>
+        <div class="plan-features">
+          <ul>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>10 publicaciones simultáneas</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Duración de 45 días</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Hasta 20 fotos por vehículo</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Visibilidad máxima</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Posición TOP en búsquedas</span>
+            </li>
+            <li>
+              <i class="fas fa-check"></i>
+              <span>Estadísticas detalladas</span>
+            </li>
+          </ul>
+        </div>
+        <div class="plan-action">
+          <button class="action-button">Seleccionar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="plans-info">
+      <p>Todos los planes incluyen soporte por correo electrónico y acceso a la plataforma de subastas</p>
+      <p>Puedes cancelar o cambiar tu plan en cualquier momento</p>
+    </div>
+  </div>
+</section>
