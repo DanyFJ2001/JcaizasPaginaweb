@@ -1,0 +1,104 @@
+<!-- hero-search.component.html - VERSIÓN FINAL OPTIMIZADA -->
+<div class="hero-section" (mouseenter)="pauseCarousel()" (mouseleave)="resumeCarousel()">
+  <!-- Fondo del carrusel con background-image usando 'cover' -->
+  <div class="hero-background" 
+       [style.background-image]="'url(' + slides[currentSlide].image + ')'"
+       [style.background-size]="'cover'"
+       [style.background-position]="'center'">
+    <div class="overlay"></div>
+  </div>
+  
+  <div class="hero-wrapper">
+    <!-- Texto principal a la izquierda con animación -->
+    <div class="hero-text">
+      <h1>Las mejores 
+        <span class="words-wrapper">
+          <span class="words-rotation" #wordsRotation>
+            <b class="is-visible">{{rotatingWords[0]}}</b>
+            <b *ngFor="let word of rotatingWords.slice(1)">{{word}}</b>
+          </span>
+        </span>
+        <br>de autos en un<br>
+        <span class="highlight-alt">solo lugar</span>
+      </h1>
+      
+      <!-- Indicadores de slide -->
+      <div class="slide-indicators">
+        <div class="indicator" 
+            *ngFor="let slide of slides; let i = index"
+            [ngClass]="{'active': i === currentSlide}" 
+            (click)="changeSlide(i)">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Formulario de búsqueda con elementos animados -->
+    <div class="search-form">
+      <h2>Encuentra tu vehículo</h2>
+      
+      <!-- Selector de tipo de vehículo -->
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="selectedType">
+          <option *ngFor="let type of vehicleTypes" [value]="type">{{type}}</option>
+        </select>
+      </div>
+      
+      <!-- Selector de marca -->
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="selectedBrand">
+          <option value="" disabled selected>Marcas</option>
+          <option *ngFor="let brand of brands" [value]="brand">{{brand}}</option>
+        </select>
+      </div>
+      
+      <!-- Selector de modelo -->
+      <div class="form-group">
+        <select class="form-control" [(ngModel)]="selectedModel">
+          <option value="" disabled selected>Modelo...</option>
+          <option *ngFor="let model of models" [value]="model">{{model}}</option>
+        </select>
+      </div>
+      
+      <!-- Fila para precio -->
+      <div class="form-row">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedPriceFrom">
+            <option value="" disabled selected>Precio desde</option>
+            <option *ngFor="let range of priceRanges" [value]="range.split(' - ')[0]">{{range}}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedPriceTo">
+            <option value="" disabled selected>Precio hasta</option>
+            <option *ngFor="let range of priceRanges" [value]="range.split(' - ')[1] || range.replace('+', '')">{{range}}</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Fila para año -->
+      <div class="form-row">
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedYearFrom">
+            <option [ngValue]="null" disabled selected>Año desde</option>
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedYearTo">
+            <option [ngValue]="null" disabled selected>Año hasta</option>
+            <option *ngFor="let year of years" [value]="year">{{year}}</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Botón de búsqueda con animación -->
+      <button class="search-button" (click)="search()">BUSCAR</button>
+    </div>
+  </div>
+  
+  <!-- Barra de progreso del carrusel -->
+ 
+
+</div>

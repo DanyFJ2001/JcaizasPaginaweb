@@ -1,0 +1,51 @@
+<!-- featured-cars.component.html -->
+<section class="featured-cars-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Autos <span class="text-highlight">Destacados</span></h2>
+      <p class="section-subtitle">Las mejores oportunidades de compra en nuestras subastas</p>
+    </div>
+
+    <div class="featured-cars-grid">
+      <!-- Tarjeta de auto - Se repite para cada auto con ngFor -->
+      <div class="car-card" *ngFor="let car of featuredCars">
+        <!-- Imagen y etiqueta TOP -->
+        <div class="car-image-container">
+          <img [src]="car.image" [alt]="car.brand + ' ' + car.model" class="car-image">
+          <div class="top-badge" *ngIf="car.isTop">
+            <i class="fas fa-star"></i> TOP
+          </div>
+        </div>
+        
+        <!-- Información del auto -->
+        <div class="car-info">
+          <h3 class="car-title">{{car.brand}} {{car.model}}</h3>
+          
+          <div class="car-details">
+            <div class="year-badge">{{car.year}}</div>
+            <div class="kilometers">{{car.kilometers | number}} Kms.</div>
+          </div>
+          
+          <div class="car-location">
+            <i class="fas fa-map-marker-alt"></i> {{car.location}}
+          </div>
+          
+          <div class="car-price-container">
+            <div class="negotiable" *ngIf="car.negotiable">Negociable</div>
+            <div class="price">${{car.price | number}}</div>
+          </div>
+          
+          <!-- Botón de oferta -->
+          <button class="offer-button" (click)="makeOffer(car.id)">
+            <i class="fas fa-gavel"></i> Ofertar Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Botón "Ver más" -->
+    <div class="view-more-container">
+      <a href="/cars" class="view-more-button">Ver Todos los Autos</a>
+    </div>
+  </div>
+</section>

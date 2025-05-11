@@ -1,0 +1,549 @@
+/* hero-search.component.css - VERSIÓN FINAL OPTIMIZADA */
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+/* Estilos generales para la sección hero */
+.hero-section {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  background-color: #f5f5f5; /* Fondo claro de fallback */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Fondo del hero - OPTIMIZADO */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: transparent; /* Sin color de fondo */
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+  /* El tamaño y posición se controlan desde el HTML con style binding */
+}
+
+/* Overlay mejorado con gradiente */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.2)); /* Gradiente sutil */
+  z-index: 2;
+}
+
+/* Contenedor principal del contenido */
+.hero-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 20px;
+}
+
+/* Estilos para el texto principal con animación */
+.hero-text {
+  color: white;
+  max-width: 550px;
+  padding-right: 20px;
+  animation: slide-in-left 0.8s ease-out both;
+}
+
+.hero-text h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  text-transform: none;
+  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.5s ease-out;
+}
+
+/* Animación por partes del texto principal */
+.hero-text h1 br:nth-of-type(1) + * {
+  display: inline-block;
+  animation: fade-in-up 0.8s ease-out 0.4s both;
+}
+
+.hero-text h1 br:nth-of-type(2) + * {
+  display: inline-block;
+  animation: fade-in-up 0.8s ease-out 0.6s both;
+}
+
+/* Al cambiar de slide, pequeña animación en el texto */
+.slide-change .hero-text h1 {
+  animation: slight-bounce 0.5s ease-out;
+}
+
+/* Contenedor de palabras rotativas */
+.words-wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  color: #f83737;
+  font-weight: 800;
+}
+
+/* Asegurarse de que el contenedor tenga suficiente ancho para la palabra más larga */
+.words-wrapper .words-rotation {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  /* La palabra "promociones" es la más larga, así que aseguramos que el ancho sea suficiente */
+  min-width: 210px; 
+}
+
+/* Estas son las palabras que se rotan */
+.words-wrapper .words-rotation b {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+}
+
+/* Palabra actualmente visible */
+.words-wrapper .words-rotation b.is-visible {
+  position: relative;
+  opacity: 1;
+  animation: slide-in 0.6s;
+}
+
+/* Palabra que sale */
+.words-wrapper .words-rotation b.is-hidden {
+  animation: slide-out 0.6s;
+}
+
+/* Estilo para el degradado */
+.highlight-alt {
+  background: linear-gradient(to right, #f83737, #ff9c37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  font-weight: 900;
+}
+
+/* Indicadores de slide con animación */
+.slide-indicators {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  animation: fade-in 1s ease-out 1s both;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Barra de progreso del carrusel */
+.carousel-progress {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 15;
+}
+
+.progress-bar {
+  width: 50px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.progress-bar.active {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.progress-inner {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transform-origin: left center;
+  animation: progress-animation 5s linear; /* Debe coincidir con autoplayInterval */
+}
+
+@keyframes progress-animation {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Formulario de búsqueda con animación */
+.search-form {
+  background-color: #1e3160;
+  border-radius: 8px;
+  width: 400px;
+  padding: 25px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  animation: slide-in-right 0.8s ease-out both;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.search-form h2 {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  animation: fade-in-up 0.6s ease-out 0.2s both;
+}
+
+/* Grupos de formulario con animación en cascada */
+.form-group {
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.form-group:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.form-group:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.form-group:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.form-row:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.form-row:nth-child(5) {
+  animation-delay: 0.7s;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+  opacity: 1;
+  animation: none;
+}
+
+/* Estilos para los selectores */
+.form-control {
+  width: 100%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Botón de búsqueda con animación */
+.search-button {
+  background-color: #e60019;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards;
+}
+
+/* Efecto de pulsación */
+.search-button:active {
+  transform: scale(0.95);
+}
+
+/* Efecto de ondas al hacer clic */
+.search-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+  z-index: -1;
+}
+
+.search-button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+/* Efecto de brillo al hover */
+.search-button::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s;
+  z-index: -1;
+}
+
+.search-button:hover::before {
+  left: 100%;
+}
+
+.search-button:hover {
+  background-color: #cc0016;
+  box-shadow: 0 5px 15px rgba(230, 0, 25, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Definiciones de animaciones */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animaciones para las palabras rotativas */
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  60% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+@keyframes slight-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 992px) {
+  .hero-section {
+    height: auto;
+    min-height: 700px;
+  }
+  
+  .hero-wrapper {
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+  
+  .hero-text {
+    text-align: center;
+    max-width: 100%;
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  .hero-text h1 {
+    font-size: 36px;
+  }
+  
+  .words-wrapper .words-rotation {
+    min-width: 180px;
+  }
+  
+  .slide-indicators {
+    justify-content: center;
+  }
+  
+  .search-form {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .carousel-progress {
+    bottom: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-text h1 {
+    font-size: 30px;
+  }
+  
+  .words-wrapper .words-rotation {
+    min-width: 150px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .search-form {
+    padding: 20px;
+  }
+  
+  .progress-bar {
+    width: 40px;
+  }
+}
+
+/* Fallback para navegadores que no soportan clip de texto */
+@supports not (background-clip: text) {
+  .highlight-alt {
+    color: #f83737;
+    background: none;
+    -webkit-text-fill-color: #f83737;
+  }
+}
